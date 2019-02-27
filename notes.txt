@@ -1,0 +1,10 @@
+-I /home/ze.akhter/project/rabbitmq-c/librabbitmq/ -L../rabbitmq-c/build/librabbitmq/ 
+-lrabbitmq
+
+g++ -I ../ -I /home/ze.akhter/project/rabbitmq-c/librabbitmq/ -L../ -L/home/ze.akhter/project/rabbitmq-c/build/librabbitmq/ main.cpp -lconnection  -lrabbitmq
+
+g++ -fPIC -shared -I. -I /home/ze.akhter/project/rabbitmq-c/librabbitmq/ -I /home/ze.akhter/project/rabbitmq-c/examples/ -L../rabbitmq-c/build/librabbitmq/ connection.cpp -o libconnection.so
+
+sudo rabbitmqadmin list queues
+sudo service rabbitmq-server restart
+sudo rabbitmqadmin get queue=queue_from_cpp requeue=true count=10
